@@ -1,8 +1,17 @@
-import Image from 'next/image';
-import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
-import InvoiceStatus from '@/app/ui/invoices/status';
-import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
-import { fetchFilteredInvoices } from '@/app/lib/data';
+import Image from "next/image";
+import { UpdateInvoice, DeleteInvoice } from "@/app/ui/invoices/buttons";
+import InvoiceStatus from "@/app/ui/invoices/status";
+import { formatDateToLocal, formatCurrency } from "@/app/lib/utils";
+import { fetchFilteredInvoices } from "@/app/lib/data";
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import { Card } from "@/components/ui/card";
 
 export default async function InvoicesTable({
   query,
@@ -14,8 +23,63 @@ export default async function InvoicesTable({
   const invoices = await fetchFilteredInvoices(query, currentPage);
 
   return (
-    <div className="mt-6 flow-root">
-      <div className="inline-block min-w-full align-middle">
+    <Card>
+      <Table>
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-[100px]">Customer</TableHead>
+            <TableHead>Email</TableHead>
+            <TableHead className="text-right">Amount</TableHead>
+            <TableHead>Date</TableHead>
+            <TableHead>Status</TableHead>
+            <TableHead></TableHead>
+          </TableRow>
+        </TableHeader>
+
+        <TableBody>
+          {invoices.map((invoice) => (
+            <TableRow key={invoice.id}>
+              <TableCell className="font-medium">
+                {
+                  <div className="flex items-center">
+                    <Image
+                      src={invoice.image_url}
+                      alt={`${invoice.name}'s profile picture`}
+                      className="mr-4 rounded-full"
+                      width={32}
+                      height={32}
+                    />
+                    <div className="min-w-0">
+                      <p className="truncate text-sm font-semibold md:text-base">
+                        {invoice.name}
+                      </p>
+                    </div>
+                  </div>
+                }
+              </TableCell>
+              <TableCell>{invoice.email}</TableCell>
+
+              <TableCell className="text-right">
+                {formatCurrency(invoice.amount)}
+              </TableCell>
+              <TableCell>{formatDateToLocal(invoice.date)}</TableCell>
+
+              <TableCell>
+                <InvoiceStatus status={invoice.status} />
+              </TableCell>
+              <TableCell>
+                <div className="flex justify-end gap-3">
+                  <UpdateInvoice id={invoice.id} />
+                  <DeleteInvoice id={invoice.id} />
+                </div>
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </Card>
+
+    /* <div className="inline-block min-w-full align-middle">
         <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
           <div className="md:hidden">
             {invoices?.map((invoice) => (
@@ -118,7 +182,6 @@ export default async function InvoicesTable({
             </tbody>
           </table>
         </div>
-      </div>
-    </div>
+      </div> */
   );
 }

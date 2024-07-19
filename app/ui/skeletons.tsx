@@ -1,20 +1,40 @@
 // Loading animation
+import { Skeleton } from "@/components/ui/skeleton";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+
 const shimmer =
-  'before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent';
+  "before:absolute before:inset-0 before:-translate-x-full before:animate-[shimmer_2s_infinite] before:bg-gradient-to-r before:from-transparent before:via-white/60 before:to-transparent";
 
 export function CardSkeleton() {
   return (
-    <div
-      className={`${shimmer} relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
-    >
-      <div className="flex p-4">
-        <div className="h-5 w-5 rounded-md bg-gray-200" />
-        <div className="ml-2 h-6 w-16 rounded-md bg-gray-200 text-sm font-medium" />
-      </div>
-      <div className="flex items-center justify-center truncate rounded-xl bg-white px-4 py-8">
-        <div className="h-7 w-20 rounded-md bg-gray-200" />
-      </div>
+    <div className="flex flex-col space-y-3">
+      <Skeleton className="h-[125px] w-[250px] rounded-xl items-start"></Skeleton>
     </div>
+    // <div
+    //   className={`${shimmer} relative overflow-hidden rounded-xl bg-gray-100 p-2 shadow-sm`}
+    // >
+    //   <div className="flex p-4">
+    //     <div className="h-5 w-5 rounded-md bg-gray-200" />
+    //     <div className="ml-2 h-6 w-16 rounded-md bg-gray-200 text-sm font-medium" />
+    //   </div>
+    //   <div className="flex items-center justify-center truncate rounded-xl bg-white px-4 py-8">
+    //     <div className="h-7 w-20 rounded-md bg-gray-200" />
+    //   </div>
+    // </div>
   );
 }
 
@@ -31,53 +51,46 @@ export function CardsSkeleton() {
 
 export function RevenueChartSkeleton() {
   return (
-    <div className={`${shimmer} relative w-full overflow-hidden md:col-span-4`}>
-      <div className="mb-4 h-8 w-36 rounded-md bg-gray-100" />
-      <div className="rounded-xl bg-gray-100 p-4">
-        <div className="mt-0 grid h-[410px] grid-cols-12 items-end gap-2 rounded-md bg-white p-4 sm:grid-cols-13 md:gap-4" />
-        <div className="flex items-center pb-2 pt-6">
-          <div className="h-5 w-5 rounded-full bg-gray-200" />
-          <div className="ml-2 h-4 w-20 rounded-md bg-gray-200" />
+    <div className="flex flex-col w-1/3 mr-4">
+      <Skeleton className="w-[100px] h-[26px] rounded-full mb-6" />
+      <Card>
+        <div className={`relative w-full p-4  overflow-hidden mr-6 mb-6`}>
+          <Skeleton className=" grid h-[406px] grid-cols-12 items-end mt-0 gap-2 rounded-md sm:grid-cols-13 md:gap-4" />
         </div>
-      </div>
+      </Card>
     </div>
   );
 }
 
 export function InvoiceSkeleton() {
   return (
-    <div className="flex flex-row items-center justify-between border-b border-gray-100 py-4">
+    <div className="flex flex-row items-center justify-between border-b py-4">
       <div className="flex items-center">
-        <div className="mr-2 h-8 w-8 rounded-full bg-gray-200" />
+        <Skeleton className="mr-2 h-8 w-8 rounded-3xl" />
         <div className="min-w-0">
-          <div className="h-5 w-40 rounded-md bg-gray-200" />
-          <div className="mt-2 h-4 w-12 rounded-md bg-gray-200" />
+          <Skeleton className="h-5 w-40" />
+          <Skeleton className="mt-2 h-4 w-12" />
         </div>
       </div>
-      <div className="mt-2 h-4 w-12 rounded-md bg-gray-200" />
+      <Skeleton className="mt-2 h-4 w-12" />
     </div>
   );
 }
 
 export function LatestInvoicesSkeleton() {
   return (
-    <div
-      className={`${shimmer} relative flex w-full flex-col overflow-hidden md:col-span-4`}
-    >
-      <div className="mb-4 h-8 w-36 rounded-md bg-gray-100" />
-      <div className="flex grow flex-col justify-between rounded-xl bg-gray-100 p-4">
-        <div className="bg-white px-6">
+    <div className="w-auto flex-grow">
+      <Skeleton className="w-[100px] h-[26px] rounded-full mb-6" />
+      <Card>
+        <div className="px-6">
+          <InvoiceSkeleton />
           <InvoiceSkeleton />
           <InvoiceSkeleton />
           <InvoiceSkeleton />
           <InvoiceSkeleton />
           <InvoiceSkeleton />
         </div>
-        <div className="flex items-center pb-2 pt-6">
-          <div className="h-5 w-5 rounded-full bg-gray-200" />
-          <div className="ml-2 h-4 w-20 rounded-md bg-gray-200" />
-        </div>
-      </div>
+      </Card>
     </div>
   );
 }
@@ -104,38 +117,34 @@ export default function DashboardSkeleton() {
 
 export function TableRowSkeleton() {
   return (
-    <tr className="w-full border-b border-gray-100 last-of-type:border-none [&:first-child>td:first-child]:rounded-tl-lg [&:first-child>td:last-child]:rounded-tr-lg [&:last-child>td:first-child]:rounded-bl-lg [&:last-child>td:last-child]:rounded-br-lg">
-      {/* Customer Name and Image */}
-      <td className="relative overflow-hidden whitespace-nowrap py-3 pl-6 pr-3">
-        <div className="flex items-center gap-3">
-          <div className="h-8 w-8 rounded-full bg-gray-100"></div>
-          <div className="h-6 w-24 rounded bg-gray-100"></div>
+    <TableRow>
+      <TableCell>
+        <div className="flex items-start w-full">
+          <Skeleton className="mr-2 h-8 w-8 rounded-3xl" />
+          <Skeleton className="mt-2 h-4 w-20" />
         </div>
-      </td>
-      {/* Email */}
-      <td className="whitespace-nowrap px-3 py-3">
-        <div className="h-6 w-32 rounded bg-gray-100"></div>
-      </td>
-      {/* Amount */}
-      <td className="whitespace-nowrap px-3 py-3">
-        <div className="h-6 w-16 rounded bg-gray-100"></div>
-      </td>
-      {/* Date */}
-      <td className="whitespace-nowrap px-3 py-3">
-        <div className="h-6 w-16 rounded bg-gray-100"></div>
-      </td>
-      {/* Status */}
-      <td className="whitespace-nowrap px-3 py-3">
-        <div className="h-6 w-16 rounded bg-gray-100"></div>
-      </td>
-      {/* Actions */}
-      <td className="whitespace-nowrap py-3 pl-6 pr-3">
-        <div className="flex justify-end gap-3">
-          <div className="h-[38px] w-[38px] rounded bg-gray-100"></div>
-          <div className="h-[38px] w-[38px] rounded bg-gray-100"></div>
+      </TableCell>
+      <TableCell>
+        <div className="min-w-0">
+          <Skeleton className="h-5 w-40" />
         </div>
-      </td>
-    </tr>
+      </TableCell>
+      <TableCell className="text-right">
+        <Skeleton className="mt-2 h-4 w-12" />
+      </TableCell>
+      <TableCell>
+        <Skeleton className="mt-2 h-4 w-12" />
+      </TableCell>
+      <TableCell>
+        <Skeleton className="mt-2 h-4 w-12" />
+      </TableCell>
+      <TableCell>
+        <div className="flex justify-end w-full">
+          <Skeleton className="mt-2 mr-2 h-10 w-10" />
+          <Skeleton className="mt-2 h-10 w-10" />
+        </div>
+      </TableCell>
+    </TableRow>
   );
 }
 
@@ -165,53 +174,29 @@ export function InvoicesMobileSkeleton() {
 
 export function InvoicesTableSkeleton() {
   return (
-    <div className="mt-6 flow-root">
+    <div className="mt-4 flow-root">
       <div className="inline-block min-w-full align-middle">
-        <div className="rounded-lg bg-gray-50 p-2 md:pt-0">
-          <div className="md:hidden">
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-            <InvoicesMobileSkeleton />
-          </div>
-          <table className="hidden min-w-full text-gray-900 md:table">
-            <thead className="rounded-lg text-left text-sm font-normal">
-              <tr>
-                <th scope="col" className="px-4 py-5 font-medium sm:pl-6">
-                  Customer
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Email
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Amount
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Date
-                </th>
-                <th scope="col" className="px-3 py-5 font-medium">
-                  Status
-                </th>
-                <th
-                  scope="col"
-                  className="relative pb-4 pl-3 pr-6 pt-2 sm:pr-6"
-                >
-                  <span className="sr-only">Edit</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody className="bg-white">
+        <Card>
+          <Table>
+            <TableHeader>
+              <TableRow>
+                <TableHead className="w-[100px]">Customer</TableHead>
+                <TableHead>Email</TableHead>
+                <TableHead className="text-right">Amount</TableHead>
+                <TableHead>Date</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead></TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
               <TableRowSkeleton />
               <TableRowSkeleton />
               <TableRowSkeleton />
               <TableRowSkeleton />
               <TableRowSkeleton />
-              <TableRowSkeleton />
-            </tbody>
-          </table>
-        </div>
+            </TableBody>
+          </Table>
+        </Card>
       </div>
     </div>
   );

@@ -8,6 +8,13 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
+import { Button } from "@/components/ui/button";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 // Map of links to display in the side navigation.
 // Depending on the size of the application, this would be stored in a database.
@@ -29,19 +36,28 @@ export default function NavLinks() {
       {links.map((link) => {
         const LinkIcon = link.icon;
         return (
-          <Link
-            key={link.name}
-            href={link.href}
-            className={clsx(
-              "flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3",
-              {
-                "bg-sky-100 text-blue-600": pathname === link.href,
-              }
-            )}
-          >
-            <LinkIcon className="w-6" />
-            <p className="hidden md:block">{link.name}</p>
-          </Link>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button asChild variant="outline" size="icon">
+                  <Link
+                    key={link.name}
+                    href={link.href}
+                    className={clsx(
+                      "flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3",
+                      {
+                        "bg-border": pathname === link.href,
+                      }
+                    )}
+                  >
+                    <LinkIcon className="w-6" />
+                    {/* <p className="hidden md:block">{link.name}</p> */}
+                  </Link>
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>{link.name}</TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
         );
       })}
     </>

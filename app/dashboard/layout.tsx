@@ -1,12 +1,22 @@
 import SideNav from "@/app/ui/dashboard/sidenav";
+import { ThemeProvider } from "@/components/theme-provider";
+
+export const experimental_ppr = true;
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex h-screen flex-col md:flex-row md:overflow-hidden">
-      <div className="w-full flex-none md:w-64">
+    <ThemeProvider
+      attribute="class"
+      defaultTheme="system"
+      enableSystem
+      disableTransitionOnChange
+    >
+      <div className="flex min-h-screen w-full flex-col bg-background">
         <SideNav />
+        <div className="flex-grow pr-8 pl-16 py-8 md:overflow-y-auto">
+          {children}
+        </div>
       </div>
-      <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div>
-    </div>
+    </ThemeProvider>
   );
 }

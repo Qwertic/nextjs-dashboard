@@ -5,3 +5,45 @@
   border-left: 20px solid transparent;
   border-right: 20px solid transparent;
 }
+
+.abstract {
+  width: 400px;
+  height: 600px;
+  background: radial-gradient(circle at 50% 25%, #b3fffc 0%, transparent 40%),
+    radial-gradient(circle at 50% 75%, #b3fffc 0%, transparent 40%),
+    radial-gradient(circle at 50% 25%, #00bfff 0%, transparent 70%),
+    radial-gradient(circle at 50% 75%, #00bfff 0%, transparent 70%),
+    radial-gradient(circle at 50% 50%, #0033cc 0%, transparent 40%),
+    radial-gradient(circle at 65% 75%, #ff6666 0%, transparent 20%);
+  filter: blur(30px);
+  margin: auto;
+  border-radius: 50%;
+  animation: animateGradients 30s infinite alternate;
+}
+
+@keyframes animateGradients {
+  0% {
+    background: radial-gradient(circle at 50% 25%, #b3fffc 0%, transparent 40%),
+      radial-gradient(circle at 50% 75%, #b3fffc 0%, transparent 40%),
+      radial-gradient(circle at 50% 25%, #00bfff 0%, transparent 70%),
+      radial-gradient(circle at 50% 75%, #00bfff 0%, transparent 70%),
+      radial-gradient(circle at 50% 50%, #0033cc 0%, transparent 40%),
+      radial-gradient(circle at 65% 75%, #ff6666 0%, transparent 20%);
+  }
+  50% {
+    background: radial-gradient(circle at 52% 23%, #b3fffc 0%, transparent 40%),
+      radial-gradient(circle at 48% 77%, #b3fffc 0%, transparent 40%),
+      radial-gradient(circle at 48% 27%, #00bfff 0%, transparent 70%),
+      radial-gradient(circle at 52% 73%, #00bfff 0%, transparent 70%),
+      radial-gradient(circle at 50% 52%, #0033cc 0%, transparent 40%),
+      radial-gradient(circle at 63% 78%, #ff6666 0%, transparent 60%);
+  }
+  100% {
+    background: radial-gradient(circle at 50% 25%, #b3fffc 0%, transparent 40%),
+      radial-gradient(circle at 50% 75%, #b3fffc 0%, transparent 40%),
+      radial-gradient(circle at 50% 25%, #00bfff 0%, transparent 70%),
+      radial-gradient(circle at 50% 75%, #00bfff 0%, transparent 70%),
+      radial-gradient(circle at 50% 50%, #0033cc 0%, transparent 40%),
+      radial-gradient(circle at 65% 75%, #ff6666 0%, transparent 50%);
+  }
+}
