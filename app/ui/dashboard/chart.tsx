@@ -15,10 +15,11 @@ import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+
+const CARD_HEIGHT = 345;
 
 export default function Chart({ data }: { data: any[] }) {
   return (
@@ -34,9 +35,9 @@ export default function Chart({ data }: { data: any[] }) {
             width="100%"
             height="100%"
             minWidth={450}
-            minHeight={378}
+            minHeight={CARD_HEIGHT}
           >
-            <BarChart width={450} height={378} data={data} barSize={50}>
+            <BarChart width={450} height={CARD_HEIGHT} data={data} barSize={50}>
               {/* <CartesianGrid stroke="hsl(var(--primary))" /> */}
               <YAxis
                 tick={{

@@ -28,7 +28,6 @@ export default async function LatestInvoices() {
           <CardDescription>January - June 2024</CardDescription>
         </CardHeader>
         <Table>
-          <TableCaption>Latest Incoices</TableCaption>
           <TableHeader>
             <TableRow>
               <TableHead className="w-[100px]">Name</TableHead>
