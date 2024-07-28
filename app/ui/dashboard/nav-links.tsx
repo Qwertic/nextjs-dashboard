@@ -36,12 +36,11 @@ export default function NavLinks() {
       {links.map((link) => {
         const LinkIcon = link.icon;
         return (
-          <TooltipProvider>
+          <TooltipProvider key={link.name}>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button asChild variant="outline" size="icon">
                   <Link
-                    key={link.name}
                     href={link.href}
                     className={clsx(
                       "flex h-[48px] grow items-center justify-center gap-2 rounded-md p-3 text-sm font-medium md:flex-none md:justify-start md:p-2 md:px-3",

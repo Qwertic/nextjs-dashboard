@@ -59,7 +59,9 @@ export default function EditInvoiceForm({
                 </SelectTrigger>
                 <SelectContent>
                   {customers.map((customer) => (
-                    <SelectItem value={customer.id}>{customer.name}</SelectItem>
+                    <SelectItem key={customer.id} value={customer.id}>
+                      {customer.name}
+                    </SelectItem>
                   ))}
                 </SelectContent>
               </Select>
